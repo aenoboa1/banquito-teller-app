@@ -9,6 +9,7 @@ import LoginLayout from "./layout/loginLayout";
 import MainLayout from "./layout/mainLayout";
 import {TellerConsultas} from "./Pages/teller-consultas/TellerConsultas";
 import {StartPage} from "./Pages/StartPage";
+import ThemeCustomization from "./themes";
 
 const router = createBrowserRouter([
     {
@@ -49,7 +50,10 @@ const router = createBrowserRouter([
 function App() {
     return (
         <div className="App">
-            <RouterProvider router={router}/>
+
+            <ThemeCustomization>
+                <RouterProvider router={router}/>
+            </ThemeCustomization>
         </div>
     );
 }
