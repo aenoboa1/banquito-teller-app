@@ -10,6 +10,8 @@ import MainLayout from "./layout/mainLayout";
 import {TellerConsultas} from "./Pages/teller-consultas/TellerConsultas";
 import {StartPage} from "./Pages/StartPage";
 import ThemeCustomization from "./themes";
+import { MainTransfer } from './Pages/teller-transferencias/MainTransfer';
+import { ConfirmTransfer } from './components/teller-transferencias/ConfirmTransfer';
 
 const router = createBrowserRouter([
     {
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
                 },
                 {
                     path: '/transferencias',
-                    element: <EjemploPaginaTransferencias/>,
+                    element: <MainTransfer/>,
+                },
+                {
+                    path: '/transferenciasConfirm',
+                    element: <ConfirmTransfer/>,
                 },
                 {
                     path: '/consultas',
