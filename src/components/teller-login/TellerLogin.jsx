@@ -12,8 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LoginIcon from '@mui/icons-material/Login';
 
-function Copyright(props: any) {
+
+function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
@@ -29,7 +31,7 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
@@ -51,10 +53,9 @@ export default function SignInSide() {
                         backgroundImage: 'url(https://i.ibb.co/PCh8wDG/banc.jpg)',
                     
                         backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'auto',
-                        backgroundPosition: 'center',
+                        
+                        backgroundSize: '85% auto',
+                        backgroundPosition: 'left',
                     }}
                 />
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -68,6 +69,8 @@ export default function SignInSide() {
                         }}
                     >
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+
+                       
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
@@ -78,10 +81,10 @@ export default function SignInSide() {
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
+                                id="user"
                                 label="Ingrese su usuario"
-                                name="email"
-                                autoComplete="email"
+                                name="user"
+                                autoComplete="user"
                                 autoFocus
                             />
                             <TextField
@@ -100,6 +103,7 @@ export default function SignInSide() {
                             />
                             <Button
                                 type="submit"
+                                color="error"
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
