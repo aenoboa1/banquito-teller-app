@@ -1,42 +1,29 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { DepositForm } from './DepositForm';
+import { Grid } from '@mui/material';
 
-const bull = (
-	<Box
-		component="span"
-		sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-	>
-		•
-	</Box>
-);
 
-export default function BasicCard() {
+export const BasicCard = ({ account }) => {
 	return (
-		<Card sx={{ minWidth: 275 }}>
-			<CardContent>
-				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-					Word of the Day
-				</Typography>
-				<Typography variant="h5" component="div">
-					be{bull}nev{bull}o{bull}lent
-				</Typography>
-				<Typography sx={{ mb: 1.5 }} color="text.secondary">
-					adjective
-				</Typography>
-				<Typography variant="body2">
-					well meaning and kindly.
-					<br />
-					{'"a benevolent smile"'}
-				</Typography>
-			</CardContent>
-			<CardActions>
-				<Button size="small">Learn More</Button>
-			</CardActions>
-		</Card>
+		<Grid>
+			<Card sx={{ width: 697, height: 181, minWidth: 300, border: '1px solid #df2c3f', borderRadius: '10px', marginTop: '-1rem' }}>
+				<CardContent sx={{ textAlign: 'start' }} className='p-tag'>
+					<Typography sx={{ mb: 1.5, lineHeight: '250%' }} color="text.secondary">
+						Número de cuenta: {account.numeroCuenta}
+					</Typography>
+					<Typography sx={{ mb: 1.5, lineHeight: '250%' }} color="text.secondary">
+						Tipo de cuenta: {account.tipoCuenta}
+					</Typography>
+					<Typography sx={{ mb: 1.5, lineHeight: '250%' }} color="text.secondary">
+						Propietario: {account.propietario}
+					</Typography>
+				</CardContent>
+			</Card>
+			
+			<DepositForm />
+		</Grid>
 	);
 }
