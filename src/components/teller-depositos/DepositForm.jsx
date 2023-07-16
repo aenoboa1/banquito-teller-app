@@ -44,12 +44,10 @@ export const DepositForm = ({ accountOrigin }) => {
                     } else if (!/^\d+(\.\d{1,2})?$/.test(valores.monto)) {
                         errores.monto = 'El monto debe ser un número válido';
                     }
-
                     return errores;
                 }}
                 onSubmit={(valores, { resetForm }) => {
                     resetForm();
-                    // console.log('Valores a enviar:', valores.nombre, valores.cedula, valores.monto);
                     setFormularioEnviado(true);
                     setTimeout(() => setFormularioEnviado(false), 5000);
                     navigate('/depositosConfirm', {
@@ -65,7 +63,7 @@ export const DepositForm = ({ accountOrigin }) => {
                 {({ errors, values, handleChange }) => (
                     <Form className="formulario">
                         <div style={{ marginBottom: '10px' }}>
-                            {/* <label htmlFor="nombre">Cédula del depositante</label> */}
+                            <label htmlFor="nombre" style={{ marginLeft: '3rem' }}>Cédula del depositante</label>
                             <Field
                                 id="cedula"
                                 name="cedula"
@@ -75,12 +73,15 @@ export const DepositForm = ({ accountOrigin }) => {
                                 as={TextField}
                                 onChange={handleChange}
                                 value={values.cedula}
+                                style={{ marginLeft: '20%' }}
                             />
-                            <ErrorMessage name="cedula" component={() => (<div className="error">{errors.cedula}</div>)} />
+                            <ErrorMessage name="cedula" component={() => (<div className="error" >
+                                {errors.cedula}
+                            </div>)} />
                         </div>
 
                         <div style={{ marginBottom: '10px' }}>
-                            {/* <label htmlFor="nombre">Nombre del depositante</label> */}
+                            <label htmlFor="nombre" style={{ marginLeft: '3rem' }}>Nombre del depositante</label>
                             <Field
                                 id="nombre"
                                 name="nombre"
@@ -89,12 +90,14 @@ export const DepositForm = ({ accountOrigin }) => {
                                 as={TextField}
                                 onChange={handleChange}
                                 value={values.nombre}
+                                style={{ marginLeft: '19%' }}
                             />
-                            <ErrorMessage name="nombre" component={() => (<div className="error">{errors.nombre}</div>)} />
+                            <ErrorMessage name="nombre" component={() => (<div className="error" >
+                                {errors.nombre}</div>)} />
                         </div>
 
                         <div style={{ marginBottom: '10px' }}>
-                            {/* <label htmlFor="nombre">Monto</label> */}
+                            <label htmlFor="nombre" style={{ marginLeft: '3rem' }}>Monto</label>
                             <Field
                                 id="monto"
                                 name="monto"
@@ -103,8 +106,15 @@ export const DepositForm = ({ accountOrigin }) => {
                                 as={TextField}
                                 onChange={handleChange}
                                 value={values.monto}
+                                style={{ marginLeft: '36.5%' }}
                             />
-                            <ErrorMessage name="monto" component={() => (<div className="error">{errors.monto}</div>)} />
+                            <ErrorMessage name="monto" component={() => (<div style={{
+                                color: '#e92b2d',
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                marginLeft: '23rem'
+                            }} >
+                                {errors.monto}</div>)} />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
                             {formularioEnviado && <p className="exito">Formulario enviado con exito!</p>}

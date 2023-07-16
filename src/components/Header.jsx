@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {createTheme, ThemeProvider} from "@mui/material";
+import {Chip, createTheme, ThemeProvider} from "@mui/material";
 import logo from "./../assets/logo.png"
 import {red} from '@mui/material/colors';
 import Link from "@mui/material/Link";
@@ -49,7 +49,7 @@ function ResponsiveAppBar() {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <AppBar position="static">
+            <AppBar position="static" elevation={0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Box
@@ -147,9 +147,16 @@ function ResponsiveAppBar() {
                         <Box sx={{flexGrow: 0}}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                    <Avatar alt="Remy Sharp" sx={{bgcolor: red[500]}}>
-                                        OP
-                                    </Avatar>
+                                    <Chip
+                                        avatar={
+                                            <Avatar
+                                                alt={"Rachel Evans"}
+                                                src={"/"}
+                                            />
+                                        }
+                                        label={"Rachel Evans"}
+                                        sx={{color: "white"}}
+                                    />
                                 </IconButton>
                             </Tooltip>
                             <Menu

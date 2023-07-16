@@ -56,18 +56,18 @@ export const ConfirmDeposit = () => {
                 alignItems="center"
             >
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card sx={{ width: 926, height: 400, minWidth: 300, border: '1px solid #df2c3f', borderRadius: '10px', marginY: '30px' }}>
+                    <Card sx={{ width: 926, height: 340, minWidth: 300, border: '1px solid #df2c3f', borderRadius: '10px', marginY: '30px' }}>
                         <CardContent sx={{ textAlign: 'start' }} className='p-tag'>
-                            <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
+                            <Typography sx={{ mb: 1.5, lineHeight: '4rem' }} color="text.secondary">
                                 Se depositará la cantidad de: {monto} $
                             </Typography>
-                            <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
+                            <Typography sx={{ mb: 1.5, lineHeight: '4rem' }} color="text.secondary">
                                 De la cuenta: {cuentaOrigen}
                             </Typography>
-                            <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
+                            <Typography sx={{ mb: 1.5, lineHeight: '4rem' }} color="text.secondary">
                                 A la cuenta: {cedula}
                             </Typography>
-                            <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
+                            <Typography sx={{ mb: 1.5, lineHeight: '4rem' }} color="text.secondary">
                                 Nombre de beneficiario: {nombre}
                             </Typography>
                         </CardContent>

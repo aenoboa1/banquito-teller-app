@@ -34,7 +34,7 @@
 	/* border: 2px solid #e2e2e2; */
 	font-size: 16px;
 	/* padding: 10px; */
-	/* margin-bottom: 5px; */
+	/* margin-left: 15px; */
 	color: #212529;
 }
 
@@ -47,6 +47,7 @@
 	color: #e92b2d;
 	font-weight: 600;
 	font-size: 12px;
+	margin-left: 23rem;
 }
 
 .formulario button[type="submit"] {
