@@ -2,35 +2,53 @@ import './App.css';
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import React from "react";
-import Header from "./components/Header";
-import { EjemploPaginaRetiros} from "./Pages/teller-retiros/EjemploPagina";
+import {EjemploPaginaRetiros} from "./Pages/teller-retiros/EjemploPagina";
 import {EjemploPaginaTransferencias} from "./Pages/teller-transferencias/EjemploPagina";
 import {EjemploPaginaDepositos} from "./Pages/teller-depositos/EjemploPagina";
+import LoginLayout from "./layout/loginLayout";
+import MainLayout from "./layout/mainLayout";
+import {TellerConsultas} from "./Pages/teller-consultas/TellerConsultas";
 import {StartPage} from "./Pages/StartPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <StartPage/>,
+        element: <MainLayout/>,
+        children:
+            [
+                {
+                    path: '/home',
+                    element: <StartPage/>,
+                },
+
+                {
+                    path: '/depositos',
+                    element: <EjemploPaginaDepositos/>,
+                },
+                {
+                    path: '/retiros',
+                    element: <EjemploPaginaRetiros/>,
+                },
+                {
+                    path: '/transferencias',
+                    element: <EjemploPaginaTransferencias/>,
+                },
+                {
+                    path: '/consultas',
+                    element: <TellerConsultas/>
+                }
+            ]
     },
     {
-        path: '/depositos',
-        element: <EjemploPaginaDepositos/>,
-    },
-    {
-        path: '/retiros',
-        element: <EjemploPaginaRetiros/>,
-    },
-    {
-        path: '/transferencias',
-        element: <EjemploPaginaTransferencias/>,
+        path: '/login',
+        element: <LoginLayout/>,
+        children: []
     }
 ]);
 
 function App() {
     return (
         <div className="App">
-            <Header/>
             <RouterProvider router={router}/>
         </div>
     );
