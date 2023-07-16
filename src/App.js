@@ -1,36 +1,40 @@
-import './App.css';
-
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import React from "react";
-import {EjemploPaginaRetiros} from "./Pages/teller-retiros/EjemploPagina";
-import {EjemploPaginaTransferencias} from "./Pages/teller-transferencias/EjemploPagina";
-import {EjemploPaginaDepositos} from "./Pages/teller-depositos/EjemploPagina";
+import { EjemploPaginaRetiros } from "./Pages/teller-retiros/EjemploPagina";
+import { EjemploPaginaTransferencias } from "./Pages/teller-transferencias/EjemploPagina";
+import { EjemploPaginaDepositos } from "./Pages/teller-depositos/EjemploPagina";
 import LoginLayout from "./layout/loginLayout";
 import MainLayout from "./layout/mainLayout";
-import {TellerConsultas} from "./Pages/teller-consultas/TellerConsultas";
-import {StartPage} from "./Pages/StartPage";
+import { TellerConsultas } from "./Pages/teller-consultas/TellerConsultas";
+import { StartPage } from "./Pages/StartPage";
 import ThemeCustomization from "./themes";
 import { MainTransfer } from './Pages/teller-transferencias/MainTransfer';
 import { ConfirmTransfer } from './components/teller-transferencias/ConfirmTransfer';
+import { TellerDepositos } from './Pages/teller-depositos/TellerDepositos';
+import { ConfirmDeposit } from './components/teller-depositos/ConfirmDeposit';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children:
             [
                 {
                     path: '/home',
-                    element: <StartPage/>,
+                    element: <StartPage />,
                 },
 
                 {
                     path: '/depositos',
-                    element: <EjemploPaginaDepositos/>,
+                    element: <TellerDepositos />,
+                },
+                {
+                    path: '/depositosConfirm',
+                    element: <ConfirmDeposit />,
                 },
                 {
                     path: '/retiros',
-                    element: <EjemploPaginaRetiros/>,
+                    element: <EjemploPaginaRetiros />,
                 },
                 {
                     path: '/transferencias',
@@ -42,13 +46,13 @@ const router = createBrowserRouter([
                 },
                 {
                     path: '/consultas',
-                    element: <TellerConsultas/>
+                    element: <TellerConsultas />
                 }
             ]
     },
     {
         path: '/login',
-        element: <LoginLayout/>,
+        element: <LoginLayout />,
         children: []
     }
 ]);
@@ -58,7 +62,7 @@ function App() {
         <div className="App">
 
             <ThemeCustomization>
-                <RouterProvider router={router}/>
+                <RouterProvider router={router} />
             </ThemeCustomization>
         </div>
     );

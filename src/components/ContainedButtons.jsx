@@ -1,7 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Card from "@mui/material/Card";
 import {ButtonBase, Grid, styled} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -100,11 +97,11 @@ export default function ContainedButtons() {
             {images.map((image) => (
                 <ImageButton
                     focusRipple
-                    LinkComponent={'/ref'}
                     key={image.title}
                     style={{
                         width: image.width,
                     }}
+                    href={image.title}
                 >
                     <ImageSrc style={{backgroundImage: `url(${image.url})`}}/>
                     <ImageBackdrop className="MuiImageBackdrop-root"/>
