@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardMedia, Divider, Grid, Modal } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Button, Divider, Grid, Modal } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export const ConfirmDeposit = () => {
+    const location = useLocation();
+    const { nombre, cedula, monto, cuentaOrigen } = location.state;
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -23,10 +26,12 @@ export const ConfirmDeposit = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
     const navigate = useNavigate();
 
     const handleNavigateToDeposit = () => {
-        navigate('/depositos');
+        handleClose();
+        navigate('/home');
     };
 
     return (
@@ -54,16 +59,16 @@ export const ConfirmDeposit = () => {
                     <Card sx={{ width: 926, height: 400, minWidth: 300, border: '1px solid #df2c3f', borderRadius: '10px', marginY: '30px' }}>
                         <CardContent sx={{ textAlign: 'start' }} className='p-tag'>
                             <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
-                                Se depositará la cantidad de: 80 $
+                                Se depositará la cantidad de: {monto} $
                             </Typography>
                             <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
-                                De la cuenta: 1234567890
+                                De la cuenta: {cuentaOrigen}
                             </Typography>
                             <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
-                                A la cuenta: 9876543210
+                                A la cuenta: {cedula}
                             </Typography>
                             <Typography sx={{ mb: 1.5, lineHeight: '5rem' }} color="text.secondary">
-                                Nombre de beneficiario: Emily Wilson
+                                Nombre de beneficiario: {nombre}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -117,13 +122,13 @@ export const ConfirmDeposit = () => {
                             <Divider sx={{ backgroundColor: "#000" }} />
 
                             <Typography sx={{ mb: 0.5, lineHeight: '2rem' }} color="text.secondary">
-                                Se ha depositado la cantidad de: <span style={{ fontWeight: 'bold' }}> 80 $</span>
+                                Se ha depositado la cantidad de: <span style={{ fontWeight: 'bold' }}> {monto} $</span>
                             </Typography>
                             <Typography sx={{ mb: 0.5, lineHeight: '2rem' }} color="text.secondary">
-                                A la cuenta: <span style={{ fontWeight: 'bold' }}> 1234567890</span>
+                                A la cuenta: <span style={{ fontWeight: 'bold' }}> {cedula}</span>
                             </Typography>
                             <Typography sx={{ mb: 0.5, lineHeight: '2rem' }} color="text.secondary">
-                                Beneficiario: <span style={{ fontWeight: 'bold' }}>Emily Wilson</span>
+                                Beneficiario: <span style={{ fontWeight: 'bold' }}>{nombre}</span>
                             </Typography>
 
                             <Button
@@ -131,15 +136,10 @@ export const ConfirmDeposit = () => {
                                 color="primary"
                                 style={{
                                     marginTop: '10px',
-                                    marginLeft: '4rem',
+                                    marginLeft: '3rem',
                                     backgroundColor: '#00202E'
                                 }}
-                                onClick={() => {
-
-                                    console.log("Regresa a tipos de transaccion");
-                                    alert("Regresa a tipos de transaccion");
-                                    handleClose();
-                                }}
+                                onClick={handleNavigateToDeposit}
                             >
                                 REALIZAR OTRA TRANSACCIÓN
                             </Button>

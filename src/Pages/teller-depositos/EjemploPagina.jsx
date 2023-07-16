@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Paper } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { BasicCard } from "../../components/teller-depositos/BasicCard";
+// import { BasicCard } from "../../components/teller-depositos/BasicCard";
 import Card from "@mui/material/Card";
 
 export const EjemploPaginaDepositos = () => {
@@ -22,7 +22,7 @@ export const EjemploPaginaDepositos = () => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <BasicCard />
+                {/* <BasicCard /> */}
             </Grid>
         </Grid>
     );
