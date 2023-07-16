@@ -1,5 +1,3 @@
-import './App.css';
-
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import React from "react";
 import {EjemploPaginaRetiros} from "./Pages/teller-retiros/EjemploPagina";

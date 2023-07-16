@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import {DataGrid} from '@mui/x-data-grid';
 import {randomStatusOptions, randomPrice} from '@mui/x-data-grid-generator';
+import {styled} from "@mui/material";
 
 const usdPrice = {
     type: 'number',
@@ -14,6 +15,48 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
+const StyledDataGrid = styled(DataGrid)(({theme}) => ({
+    border: 0,
+    color:
+        theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
+    fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+    ].join(','),
+    WebkitFontSmoothing: 'auto',
+    letterSpacing: 'normal',
+    '& .MuiDataGrid-columnsContainer': {
+        backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
+    },
+    '& .MuiDataGrid-iconSeparator': {
+        display: 'none',
+    },
+    '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
+        borderRight: `1px solid ${
+            theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+        }`,
+    },
+    '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
+        borderBottom: `1px solid ${
+            theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
+        }`,
+    },
+    '& .MuiDataGrid-cell': {
+        color:
+            theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
+    },
+    '& .MuiPaginationItem-root': {
+        borderRadius: 0,
+    },
+}));
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
     {
@@ -114,7 +157,7 @@ const rows = [
 export default function TransactionsGrid() {
     return (
         <Box sx={{height: 400, width: '100%'}}>
-            <DataGrid
+            <StyledDataGrid
                 rows={rows}
                 columns={columns}
                 initialState={{
