@@ -2,7 +2,8 @@ import React from 'react';
 import {Grid, Paper} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import BasicCard from "../../components/teller-transferencias/BasicCard";
+import { BasicCard } from '../../components/teller-transferencias/BasicCard';
+
 
 export const EjemploPaginaTransferencias = () => {
     return (
