@@ -1,12 +1,11 @@
 import './css/style.css';
-import { Button, Divider, Grid, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import {Button, Divider, Grid, TextField, Typography} from '@mui/material';
+import React, {useState} from 'react'
 
 import SearchIcon from '@mui/icons-material/Search';
-import { BasicCard } from '../../components/teller-transferencias/BasicCard';
-import { NotFound } from '../../components/teller-transferencias/NotFound';
-import { getAccountByNumber } from './Tranferencias';
-
+import {AccountCard} from '../../components/teller-transferencias/AccountCard';
+import {NotFound} from '../../components/teller-transferencias/NotFound';
+import {getAccountByNumber} from './Tranferencias';
 
 
 export const MainTransfer = () => {
@@ -76,12 +75,12 @@ export const MainTransfer = () => {
                     size="small"
                     value={inputValue}
                     onChange={handleChange}
-                    inputProps={{ maxLength: 10 }}
+                    inputProps={{maxLength: 10}}
                     disabled={disabledTextF}
-               
+
                 />
                 <Divider align="center">
-                    <span > </span>
+                    <span> </span>
                 </Divider>
 
                 <Button
@@ -90,7 +89,7 @@ export const MainTransfer = () => {
                     color="info"
                     size="large"
                     startIcon={
-                        <SearchIcon style={{ marginLeft: '1rem' }} />
+                        <SearchIcon style={{marginLeft: '1rem'}}/>
                     }
                     onClick={validate}
                     disabled={disabledButton}
@@ -102,11 +101,11 @@ export const MainTransfer = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    style={{ marginTop: "2rem" }}
+                    style={{marginTop: "2rem"}}
                 >
-                    {show ? <BasicCard account={account} /> : showNot ? <NotFound /> : null}
+                    {show ? <AccountCard account={account}/> : showNot ? <NotFound/> : null}
                 </Grid>
             </Grid>
         </Grid>
-    );
+    );
 }
