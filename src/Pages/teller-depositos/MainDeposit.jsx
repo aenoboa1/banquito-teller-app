@@ -1,11 +1,11 @@
 import './css/style.css';
-import { Button, Divider, Grid, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
-import { BasicCard } from '../../components/teller-depositos/BasicCard';
+import {Button, Divider, Grid, TextField, Typography} from '@mui/material';
+import React, {useState} from 'react'
+import {BasicCard} from '../../components/teller-depositos/AccountCard';
 // import { SearchIcon } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
-import { getAccountByNumber } from './depositos';
-import { NotFound } from '../../components/teller-depositos/NotFound';
+import {getAccountByNumber} from './depositos';
+import {NotFound} from '../../components/teller-depositos/NotFound';
 
 
 export const MainDeposit = () => {
@@ -77,18 +77,18 @@ export const MainDeposit = () => {
                     size="small"
                     value={inputValue}
                     onChange={handleChange}
-                    inputProps={{ maxLength: 10 }}
+                    inputProps={{maxLength: 10}}
                     disabled={disabledTextF}
-                // InputProps={{
-                //     endAdornment: (
-                //         <InputAdornment position="end">
-                //             <SearchIcon />
-                //         </InputAdornment>
-                //     ),
-                // }}
+                    // InputProps={{
+                    //     endAdornment: (
+                    //         <InputAdornment position="end">
+                    //             <SearchIcon />
+                    //         </InputAdornment>
+                    //     ),
+                    // }}
                 />
                 <Divider align="center">
-                    <span > </span>
+                    <span> </span>
                 </Divider>
 
                 <Button
@@ -97,7 +97,7 @@ export const MainDeposit = () => {
                     color="info"
                     size="large"
                     startIcon={
-                        <SearchIcon style={{ marginLeft: '1rem' }} />
+                        <SearchIcon style={{marginLeft: '1rem'}}/>
                     }
                     onClick={validate}
                     disabled={disabledButton}
@@ -109,9 +109,9 @@ export const MainDeposit = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    style={{ marginTop: "2rem" }}
+                    style={{marginTop: "2rem"}}
                 >
-                    {show ? <BasicCard account={account} /> : showNot ? <NotFound /> : null}
+                    {show ? <BasicCard account={account}/> : showNot ? <NotFound/> : null}
                 </Grid>
             </Grid>
         </Grid>

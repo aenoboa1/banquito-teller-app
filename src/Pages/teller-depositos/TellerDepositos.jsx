@@ -1,11 +1,10 @@
 import './css/style.css';
-import { Button, Divider, Grid, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
-// import { SearchIcon } from '@mui/icons-material';
+import {Button, Divider, Grid, IconButton, InputAdornment, TextField, Typography} from '@mui/material';
+import React, {useState} from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { getAccountByNumber } from './depositos';
-import { NotFound } from '../../components/teller-depositos/NotFound';
-import { AccountDetails } from '../../components/teller-depositos/AccountDetails';
+import {getAccountByNumber} from './depositos';
+import {NotFound} from '../../components/teller-depositos/NotFound';
+import {AccountDetails} from '../../components/teller-depositos/AccountDetails';
 
 
 export const TellerDepositos = () => {
@@ -22,8 +21,6 @@ export const TellerDepositos = () => {
     };
 
     const validate = () => {
-        // const search = inputValue;
-        // navigate(`/depositosConfirm/${search}`);
 
         const accountData = getAccountByNumber(inputValue);
         if (accountData === undefined || accountData === null) {
@@ -77,18 +74,11 @@ export const TellerDepositos = () => {
                     size="small"
                     value={inputValue}
                     onChange={handleChange}
-                    inputProps={{ maxLength: 10 }}
+                    inputProps={{maxLength: 10}}
                     disabled={disabledTextF}
-                    // InputProps={{
-                    //     endAdornment: (
-                    //         <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
-                    //             <SearchIcon />
-                    //         </IconButton>
-                    //     ),
-                    // }}
                 />
                 <Divider align="center">
-                    <span > </span>
+                    <span> </span>
                 </Divider>
 
                 <Button
@@ -97,7 +87,7 @@ export const TellerDepositos = () => {
                     color="info"
                     size="large"
                     startIcon={
-                        <SearchIcon style={{ marginLeft: '1rem' }} />
+                        <SearchIcon style={{marginLeft: '1rem'}}/>
                     }
                     onClick={validate}
                     disabled={disabledButton}
@@ -109,9 +99,9 @@ export const TellerDepositos = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    style={{ marginTop: "2rem" }}
+                    style={{marginTop: "2rem"}}
                 >
-                    {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null}
+                    {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
                 </Grid>
             </Grid>
         </Grid>

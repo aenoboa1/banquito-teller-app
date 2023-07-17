@@ -9,14 +9,14 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {createAPIEndpoint, ENDPOINTS} from "../../api";
 import Typography from "@mui/material/Typography";
-import Grow from '@mui/material/Grow';
 
 export const TellerConsultas = () => {
     const [value, setValue] = useState("");
+    const [Error, setError] = useState("");
     const [result, setResult] = useState([]);
-    const [checked, setChecked] = useState(false);
 
-    function handleSearch(event) {
+    function handleSearch(e) {
+        e.preventDefault();
         getInfo(value);
     }
 
@@ -30,7 +30,8 @@ export const TellerConsultas = () => {
                 setResult(res.data)
             })
             .catch((err) => {
-                console.log(err);
+                setResult([])
+                setError(err.code)
             });
     }
 
@@ -67,12 +68,20 @@ export const TellerConsultas = () => {
                         </IconButton>
                     </Paper>
                 </Grid>
-
                 {
                     // conditional rendering
                     result.length === 0 ? (
                         <>
-
+                            {Error === "ERR_BAD_RESPONSE" ? (
+                                <>
+                                    <Grid item xs={6}>
+                                        No se encontro ninguna cuenta con ese número
+                                    </Grid>
+                                </>
+                            ) : (
+                                <>
+                                </>
+                            )}
                         </>
                     ) : (
                         <>
