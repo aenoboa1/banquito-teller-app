@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginIcon from '@mui/icons-material/Login';
+import banc from "./../../assets/banc.jpg";
+
 
 
 function Copyright(props) {
@@ -35,9 +37,10 @@ export default function SignInSide() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-            email: data.get('email'),
+           user: data.get('user'),
             password: data.get('password'),
         });
+        window.location.href = '/home';
     };
 
     return (
@@ -53,6 +56,7 @@ export default function SignInSide() {
                         backgroundImage: 'url(https://i.ibb.co/PCh8wDG/banc.jpg)',
                     
                         backgroundRepeat: 'no-repeat',
+                        backgroundColor:"#ffffff",
                         
                         backgroundSize: '85% auto',
                         backgroundPosition: 'left',
@@ -68,7 +72,8 @@ export default function SignInSide() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                         <img src={banc} alt="hyper" height={50} className="mb-3"/>
+                        <Avatar sx={{ m: 1, bgcolor: 'error' }}>
 
                        
                             <LockOutlinedIcon />
@@ -97,10 +102,7 @@ export default function SignInSide() {
                                 id="password"
                                 autoComplete="current-password"
                             />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
+                        
                             <Button
                                 type="submit"
                                 color="error"
@@ -117,9 +119,7 @@ export default function SignInSide() {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
-                                        {"No tienes una cuenta? Solicitala aqui"}
-                                    </Link>
+                                  
                                 </Grid>
                             </Grid>
                             <Copyright sx={{ mt: 5 }} />

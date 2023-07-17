@@ -12,6 +12,8 @@ import { MainTransfer } from './Pages/teller-transferencias/MainTransfer';
 import { ConfirmTransfer } from './components/teller-transferencias/ConfirmTransfer';
 import { TellerDepositos } from './Pages/teller-depositos/TellerDepositos';
 import { ConfirmDeposit } from './components/teller-depositos/ConfirmDeposit';
+import { TellerRetiros } from './Pages/teller-retiros/MainRetiros';
+import { ConfirmRetiro } from './components/teller-retiros/ConfirmRetiro';
 
 const router = createBrowserRouter([
     {
@@ -34,7 +36,11 @@ const router = createBrowserRouter([
                 },
                 {
                     path: '/retiros',
-                    element: <EjemploPaginaRetiros />,
+                    element: <TellerRetiros />,
+                },
+                {
+                    path: '/retirosConfirm',
+                    element: <ConfirmRetiro />,
                 },
                 {
                     path: '/transferencias',
