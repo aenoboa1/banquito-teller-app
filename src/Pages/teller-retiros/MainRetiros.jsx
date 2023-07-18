@@ -1,11 +1,11 @@
 import './css/style.css';
-import { Button, Divider, Grid, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import {Button, Divider, Grid, TextField} from '@mui/material';
+import React, {useState} from 'react'
 // import { SearchIcon } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
-import { getAccountByNumber } from './retiros';
-import { NotFound } from '../../components/teller-retiros/NotFound';
-import { AccountDetails } from '../../components/teller-retiros/AccountDetails';
+import {getAccountByNumber} from './retiros';
+import {NotFound} from '../../components/teller-retiros/NotFound';
+import {AccountDetails} from '../../components/teller-retiros/AccountDetails';
 
 
 export const TellerRetiros = () => {
@@ -28,9 +28,7 @@ export const TellerRetiros = () => {
         const accountData = getAccountByNumber(inputValue);
         if (accountData === undefined || accountData === null) {
             const newAccount = {
-                numeroCuenta: '0000000000',
-                tipoCuenta: '----------',
-                propietario: 'Sin nombre'
+                numeroCuenta: '0000000000', tipoCuenta: '----------', propietario: 'Sin nombre'
             };
             setAccount(newAccount);
             setShowNot(true);
@@ -45,21 +43,12 @@ export const TellerRetiros = () => {
         }
     }
 
-    return (
-        <Grid
+    return (<Grid
             container
             direction="row"
             justifyContent="flex-start"
             alignItems="center"
         >
-            <Typography component="h1" variant="h5" style={{
-                fontWeight: 'bold',
-                fontStyle: 'italic',
-                marginTop: '1rem',
-                marginLeft: '5rem'
-            }}>
-                Retiros
-            </Typography>
 
             <Grid
                 container
@@ -77,18 +66,11 @@ export const TellerRetiros = () => {
                     size="small"
                     value={inputValue}
                     onChange={handleChange}
-                    inputProps={{ maxLength: 10 }}
+                    inputProps={{maxLength: 10}}
                     disabled={disabledTextF}
-                    // InputProps={{
-                    //     endAdornment: (
-                    //         <IconButton type="button" sx={{ p: '5px' }} aria-label="search">
-                    //             <SearchIcon />
-                    //         </IconButton>
-                    //     ),
-                    // }}
                 />
                 <Divider align="center">
-                    <span > </span>
+                    <span> </span>
                 </Divider>
 
                 <Button
@@ -96,9 +78,7 @@ export const TellerRetiros = () => {
                     variant="contained"
                     color="info"
                     size="large"
-                    startIcon={
-                        <SearchIcon style={{ marginLeft: '1rem' }} />
-                    }
+                    startIcon={<SearchIcon style={{marginLeft: '1rem'}}/>}
                     onClick={validate}
                     disabled={disabledButton}
                 >
@@ -109,11 +89,10 @@ export const TellerRetiros = () => {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    style={{ marginTop: "2rem" }}
+                    style={{marginTop: "2rem"}}
                 >
-                    {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null}
+                    {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
                 </Grid>
             </Grid>
-        </Grid>
-    );
+        </Grid>);
 }
