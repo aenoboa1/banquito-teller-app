@@ -47,7 +47,7 @@ export const ConfirmRetiro = () => {
                 marginTop: '1rem',
                 marginLeft: '5rem'
             }}>
-                Confirmación de Depósitos
+                Confirmación de Retiros
             </Typography>
             <Grid
                 container
