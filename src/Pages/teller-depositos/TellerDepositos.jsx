@@ -1,10 +1,11 @@
 import './css/style.css';
-import {Button, Divider, Grid, IconButton, InputAdornment, TextField, Typography} from '@mui/material';
-import React, {useState} from 'react'
+import { Button, Divider, Grid, IconButton, InputAdornment, InputBase, Paper, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import {getAccountByNumber} from './depositos';
-import {NotFound} from '../../components/teller-depositos/NotFound';
-import {AccountDetails} from '../../components/teller-depositos/AccountDetails';
+import { getAccountByNumber } from './depositos';
+import { NotFound } from '../../components/teller-depositos/NotFound';
+import { AccountDetails } from '../../components/teller-depositos/AccountDetails';
+import { ENDPOINTSDEPOSIT, createAPIEndpointDeposit } from '../../api';
 
 
 export const TellerDepositos = () => {
@@ -16,12 +17,39 @@ export const TellerDepositos = () => {
     const [disabledButton, setDisabledButton] = useState(false);
     const [disabledTextF, setDisabledTextF] = useState(false);
 
+    const [value, setValue] = useState("");
+    const [Error, setError] = useState("");
+    const [result, setResult] = useState([]);
+
+    function handleSearch(e) {
+        e.preventDefault();
+        getInfo(value);
+    }
+
+
+    function getInfo(value) {
+        createAPIEndpointDeposit(ENDPOINTSDEPOSIT.deposit)
+            .fetchById(value,
+                {},
+            )
+            .then(async (res) => {
+                setResult(res.data)
+            })
+            .catch((err) => {
+                setResult([])
+                setError(err.code)
+            });
+    }
+
+    useEffect(() => {
+
+    }, []);
+
     const handleChange = (e) => {
         setInputValue(e.target.value);
     };
 
     const validate = () => {
-
         const accountData = getAccountByNumber(inputValue);
         if (accountData === undefined || accountData === null) {
             const newAccount = {
@@ -42,60 +70,119 @@ export const TellerDepositos = () => {
         }
     }
 
-    return (
-        <Grid
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
-        >
+    // return (
+    //     <Grid
+    //         container
+    //         direction="row"
+    //         justifyContent="flex-start"
+    //         alignItems="center"
+    //     >
 
+    //         <Grid
+    //             container
+    //             direction="row"
+    //             justifyContent="center"
+    //             alignItems="center"
+    //         >
+    //             <Divider align="center">
+    //                 <span className="p-tag">Número de cuenta</span>
+    //             </Divider>
+    //             <TextField
+    //                 id="outlined-basic"
+    //                 label=""
+    //                 variant="outlined"
+    //                 size="small"
+    //                 value={inputValue}
+    //                 onChange={handleChange}
+    //                 inputProps={{ maxLength: 10 }}
+    //                 disabled={disabledTextF}
+    //             />
+    //             <Divider align="center">
+    //                 <span> </span>
+    //             </Divider>
+
+    //             <Button
+    //                 className='buttonSearch'
+    //                 variant="contained"
+    //                 color="info"
+    //                 size="large"
+    //                 startIcon={
+    //                     <SearchIcon style={{ marginLeft: '1rem' }} />
+    //                 }
+    //                 onClick={validate}
+    //                 disabled={disabledButton}
+    //             >
+    //             </Button>
+
+    //             <Grid
+    //                 container
+    //                 direction="row"
+    //                 justifyContent="center"
+    //                 alignItems="center"
+    //                 style={{ marginTop: "2rem" }}
+    //             >
+    //                 {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null}
+    //             </Grid>
+    //         </Grid>
+    //     </Grid>
+    // );
+
+    return (
+        <>
             <Grid
                 container
-                direction="row"
-                justifyContent="center"
+                spacing={5}
+                direction="column"
                 alignItems="center"
+                sx={{ minHeight: '100vh' }}
             >
-                <Divider align="center">
-                    <span className="p-tag">Número de cuenta</span>
-                </Divider>
-                <TextField
-                    id="outlined-basic"
-                    label=""
-                    variant="outlined"
-                    size="small"
-                    value={inputValue}
-                    onChange={handleChange}
-                    inputProps={{maxLength: 10}}
-                    disabled={disabledTextF}
-                />
-                <Divider align="center">
-                    <span> </span>
-                </Divider>
+                <Grid item xs={6}>
+                    <Paper
 
-                <Button
-                    className='buttonSearch'
-                    variant="contained"
-                    color="info"
-                    size="large"
-                    startIcon={
-                        <SearchIcon style={{marginLeft: '1rem'}}/>
-                    }
-                    onClick={validate}
-                    disabled={disabledButton}
-                >
-                </Button>
-
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{marginTop: "2rem"}}
-                >
-                    {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
+                        component="form"
+                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+                    >
+                        <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            placeholder="Buscar por Numero de Cuenta"
+                            onChange={event => {                                 //adding the onChange event
+                                setValue(event.target.value)
+                            }}
+                        />
+                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
+                            <SearchIcon />
+                        </IconButton>
+                    </Paper>
                 </Grid>
+                {
+                    // conditional rendering
+                    (result.length === 0 || result === null ? (
+                        <>
+                            {Error === "ERR_BAD_RESPONSE" ? (
+                                <>
+                                    <Grid item xs={6}>
+                                        No se encontro ninguna cuenta con ese número
+                                    </Grid>
+                                </>
+                            ) : (
+                                <>
+                                </>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            <Grid item xs={6}>
+                                {/* {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null} */}
+                                <AccountDetails account={result} />
+                                {/* <AccountCard data={result} /> */}
+                            </Grid>
+                        </>
+                    ))
+                }
+
             </Grid>
-        </Grid>
-    );
+
+
+        </>
+    )
 }
