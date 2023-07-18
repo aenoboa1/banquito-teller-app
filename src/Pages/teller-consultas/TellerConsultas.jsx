@@ -1,6 +1,4 @@
 import Grid from "@mui/material/Grid";
-import AccountCard from "./AccountCard";
-import TransactionsGrid from "./TransactionsGrid";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
@@ -9,6 +7,8 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {createAPIEndpoint, ENDPOINTS} from "../../api";
 import Typography from "@mui/material/Typography";
+import AccountCard from "../../components/teller-consultas/AccountCard";
+import TransactionsGrid from "../../components/teller-consultas/TransactionsGrid";
 
 export const TellerConsultas = () => {
     const [value, setValue] = useState("");
@@ -49,7 +49,6 @@ export const TellerConsultas = () => {
                 alignItems="center"
                 sx={{minHeight: '100vh'}}
             >
-
                 <Grid item xs={6}>
                     <Paper
 

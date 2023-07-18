@@ -11,10 +11,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import LoginIcon from '@mui/icons-material/Login';
 import banc from "./../../assets/banc.jpg";
-
 
 
 function Copyright(props) {
@@ -37,7 +36,7 @@ export default function SignInSide() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-           user: data.get('user'),
+            user: data.get('user'),
             password: data.get('password'),
         });
         window.location.href = '/home';
@@ -45,8 +44,8 @@ export default function SignInSide() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <CssBaseline />
+            <Grid container component="main" sx={{height: '100vh'}}>
+                <CssBaseline/>
                 <Grid
                     item
                     xs={false}
@@ -54,11 +53,8 @@ export default function SignInSide() {
                     md={7}
                     sx={{
                         backgroundImage: 'url(https://i.ibb.co/PCh8wDG/banc.jpg)',
-                    
                         backgroundRepeat: 'no-repeat',
-                        backgroundColor:"#ffffff",
-                        
-                        backgroundSize: '85% auto',
+                        backgroundColor: "#ffffff",
                         backgroundPosition: 'left',
                     }}
                 />
@@ -72,16 +68,16 @@ export default function SignInSide() {
                             alignItems: 'center',
                         }}
                     >
-                         <img src={banc} alt="hyper" height={50} className="mb-3"/>
-                        <Avatar sx={{ m: 1, bgcolor: 'error' }}>
+                        <img src={banc} alt="hyper" height={50} className="mb-3"/>
+                        <Avatar sx={{m: 1, bgcolor: 'error'}}>
 
-                       
-                            <LockOutlinedIcon />
+
+                            <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Iniciar Sesion
+                            Iniciar Sesión
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
                             <TextField
                                 margin="normal"
                                 required
@@ -102,27 +98,17 @@ export default function SignInSide() {
                                 id="password"
                                 autoComplete="current-password"
                             />
-                        
+
                             <Button
                                 type="submit"
                                 color="error"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
+                                sx={{mt: 3, mb: 2}}
                             >
                                 Ingresar
                             </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Olvidaste tu Contraseña?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                  
-                                </Grid>
-                            </Grid>
-                            <Copyright sx={{ mt: 5 }} />
+                            <Copyright sx={{mt: 5}}/>
                         </Box>
                     </Box>
                 </Grid>

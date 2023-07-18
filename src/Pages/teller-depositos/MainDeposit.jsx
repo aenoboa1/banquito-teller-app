@@ -52,14 +52,6 @@ export const MainDeposit = () => {
             justifyContent="flex-start"
             alignItems="center"
         >
-            <Typography component="h1" variant="h5" style={{
-                fontWeight: 'bold',
-                fontStyle: 'italic',
-                marginTop: '1rem',
-                marginLeft: '5rem'
-            }}>
-                Depósitos
-            </Typography>
 
             <Grid
                 container
