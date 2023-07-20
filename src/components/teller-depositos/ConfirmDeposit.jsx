@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box, Button, Divider, Grid, Modal } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import SUCCESS_ANIMATION from "../../../public/success.json";
 
 
 export const ConfirmDeposit = () => {

@@ -62,7 +62,7 @@ export const DepositForm = ({ accountOrigin }) => {
             >
                 {({ errors, values, handleChange }) => (
                     <Form className="formulario">
-                        <div style={{ marginBottom: '10px' }}>
+                        <div style={{ marginBottom: '1rem' }}>
                             {/* <label htmlFor="nombre" style={{ marginLeft: '3rem' }}>Monto</label> */}
                             <Field
                                 id="monto"
@@ -82,8 +82,10 @@ export const DepositForm = ({ accountOrigin }) => {
                             }} >
                                 {errors.monto}</div>)} />
                         </div>
-
-                        <label htmlFor="nombre" style={{ marginLeft: '1rem', marginBottom: '1rem' }}>Beneficiario</label>
+                        <Divider variant="middle" color="#ad1414" sx={{ height: 5, marginBottom: '1rem' }} />
+                        <label htmlFor="nombre" style={{ marginLeft: '1rem', marginBottom: '1rem', fontSize: '16px' }}>
+                            Beneficiario
+                        </label>
 
                         <div style={{ marginBottom: '10px' }}>
                             <label htmlFor="nombre" style={{ marginLeft: '3rem' }}>Nombre del depositante</label>

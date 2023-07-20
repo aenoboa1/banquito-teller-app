@@ -33,7 +33,7 @@ export const AccountDetails = ({ account }) => {
                     <Grid container spacing={2} columns={16} justifyContent="center">
                         <Box sx={{ my: 1, mx: 2 }}>
                             <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                                <Box sx={{ textAlign: 'left', m: 1 }}>Número de Cuenta</Box>
+                                <Box sx={{ textAlign: 'left', m: 1 }}>Número de cuenta</Box>
                             </Typography>
                             <Typography sx={{ fontSize: 16 }} gutterBottom>
                                 <Box sx={{ textAlign: 'left', m: 1 }}>

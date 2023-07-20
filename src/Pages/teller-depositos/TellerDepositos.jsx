@@ -145,7 +145,7 @@ export const TellerDepositos = () => {
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
                             placeholder="Buscar por Numero de Cuenta"
-                            onChange={event => {                                 //adding the onChange event
+                            onChange={event => {  //adding the onChange event
                                 setValue(event.target.value)
                             }}
                         />
