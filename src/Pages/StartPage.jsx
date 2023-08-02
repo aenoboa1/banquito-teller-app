@@ -1,9 +1,14 @@
-import ContainedButtons from "../components/ContainedButtons";
+import ContainedButtons from "./components/ContainedButtons";
+import DashboardLayout from "../examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "../examples/Navbars/DashboardNavbar";
 
 export const StartPage = () => {
-	return (
-		<>
-			<ContainedButtons/>
-		</>
-	)
+    return (<>
+
+        <DashboardLayout>
+            <DashboardNavbar/>
+            <ContainedButtons/>
+        </DashboardLayout>
+
+    </>)
 }

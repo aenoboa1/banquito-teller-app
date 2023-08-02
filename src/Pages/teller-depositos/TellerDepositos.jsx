@@ -1,11 +1,10 @@
 import './css/style.css';
-import { Button, Divider, Grid, IconButton, InputAdornment, InputBase, Paper, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import {Grid, IconButton, InputBase, Paper} from '@mui/material';
+import React, {useEffect, useState} from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { getAccountByNumber } from './depositos';
-import { NotFound } from '../../components/teller-depositos/NotFound';
-import { AccountDetails } from '../../components/teller-depositos/AccountDetails';
-import { ENDPOINTSDEPOSIT, createAPIEndpointDeposit } from '../../api';
+import {getAccountByNumber} from './depositos';
+import {AccountDetails} from './components/AccountDetails';
+import {createAPIEndpointDeposit, ENDPOINTSDEPOSIT} from '../../api/'
 
 
 export const TellerDepositos = () => {
@@ -70,63 +69,6 @@ export const TellerDepositos = () => {
         }
     }
 
-    // return (
-    //     <Grid
-    //         container
-    //         direction="row"
-    //         justifyContent="flex-start"
-    //         alignItems="center"
-    //     >
-
-    //         <Grid
-    //             container
-    //             direction="row"
-    //             justifyContent="center"
-    //             alignItems="center"
-    //         >
-    //             <Divider align="center">
-    //                 <span className="p-tag">Número de cuenta</span>
-    //             </Divider>
-    //             <TextField
-    //                 id="outlined-basic"
-    //                 label=""
-    //                 variant="outlined"
-    //                 size="small"
-    //                 value={inputValue}
-    //                 onChange={handleChange}
-    //                 inputProps={{ maxLength: 10 }}
-    //                 disabled={disabledTextF}
-    //             />
-    //             <Divider align="center">
-    //                 <span> </span>
-    //             </Divider>
-
-    //             <Button
-    //                 className='buttonSearch'
-    //                 variant="contained"
-    //                 color="info"
-    //                 size="large"
-    //                 startIcon={
-    //                     <SearchIcon style={{ marginLeft: '1rem' }} />
-    //                 }
-    //                 onClick={validate}
-    //                 disabled={disabledButton}
-    //             >
-    //             </Button>
-
-    //             <Grid
-    //                 container
-    //                 direction="row"
-    //                 justifyContent="center"
-    //                 alignItems="center"
-    //                 style={{ marginTop: "2rem" }}
-    //             >
-    //                 {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null}
-    //             </Grid>
-    //         </Grid>
-    //     </Grid>
-    // );
-
     return (
         <>
             <Grid
@@ -134,23 +76,23 @@ export const TellerDepositos = () => {
                 spacing={5}
                 direction="column"
                 alignItems="center"
-                sx={{ minHeight: '100vh' }}
+                sx={{minHeight: '100vh'}}
             >
                 <Grid item xs={6}>
                     <Paper
 
                         component="form"
-                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+                        sx={{p: '2px 4px', display: 'flex', alignItems: 'center', width: 400}}
                     >
                         <InputBase
-                            sx={{ ml: 1, flex: 1 }}
+                            sx={{ml: 1, flex: 1}}
                             placeholder="Buscar por Numero de Cuenta"
                             onChange={event => {  //adding the onChange event
                                 setValue(event.target.value)
                             }}
                         />
-                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
-                            <SearchIcon />
+                        <IconButton type="button" sx={{p: '10px'}} aria-label="search" onClick={handleSearch}>
+                            <SearchIcon/>
                         </IconButton>
                     </Paper>
                 </Grid>
@@ -173,7 +115,7 @@ export const TellerDepositos = () => {
                         <>
                             <Grid item xs={6}>
                                 {/* {show ? <AccountDetails account={account} /> : showNot ? <NotFound /> : null} */}
-                                <AccountDetails account={result} />
+                                <AccountDetails account={result}/>
                                 {/* <AccountCard data={result} /> */}
                             </Grid>
                         </>
