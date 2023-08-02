@@ -168,7 +168,6 @@ export default function TransactionsGrid() {
                     },
                 }}
                 pageSizeOptions={[5]}
-                checkboxSelection
                 disableRowSelectionOnClick
             />
         </Box>
