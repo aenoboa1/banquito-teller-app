@@ -1,11 +1,8 @@
 import React from 'react';
-import { Grid } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import BasicCard from "../../components/teller-login/TellerLogin";
+import SignInSide from "./components/TellerLogin";
 
 export const ExLogin = () => {
     return (
-      
-                <BasicCard />
-    );
+
+        <SignInSide/>);
 }

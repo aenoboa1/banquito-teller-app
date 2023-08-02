@@ -3,9 +3,9 @@ import {Button, Divider, Grid, TextField, Typography} from '@mui/material';
 import React, {useState} from 'react'
 
 import SearchIcon from '@mui/icons-material/Search';
-import {AccountCard} from '../../components/teller-transferencias/AccountCard';
-import {NotFound} from '../../components/teller-transferencias/NotFound';
+import {AccountCard} from './components/AccountCard';
 import {getAccountByNumber} from './Tranferencias';
+import {NotFound} from "./components/NotFound";
 
 
 export const MainTransfer = () => {
@@ -78,7 +78,6 @@ export const MainTransfer = () => {
                 <Button
                     className='buttonSearch'
                     variant="contained"
-                    color="info"
                     size="large"
                     startIcon={
                         <SearchIcon style={{marginLeft: '1rem'}}/>

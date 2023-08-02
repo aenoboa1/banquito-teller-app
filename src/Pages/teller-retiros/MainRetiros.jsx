@@ -4,8 +4,8 @@ import React, {useState} from 'react'
 // import { SearchIcon } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import {getAccountByNumber} from './retiros';
-import {NotFound} from '../../components/teller-retiros/NotFound';
-import {AccountDetails} from '../../components/teller-retiros/AccountDetails';
+import {AccountDetails} from "./components/AccountDetails";
+import {NotFound} from "./components/NotFound";
 
 
 export const TellerRetiros = () => {
@@ -44,55 +44,54 @@ export const TellerRetiros = () => {
     }
 
     return (<Grid
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center"
+    >
+
+        <Grid
             container
             direction="row"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="center"
         >
+            <Divider align="center">
+                <span className="p-tag">Número de cuenta</span>
+            </Divider>
+            <TextField
+                id="outlined-basic"
+                label=""
+                variant="outlined"
+                size="small"
+                value={inputValue}
+                onChange={handleChange}
+                inputProps={{maxLength: 10}}
+                disabled={disabledTextF}
+            />
+            <Divider align="center">
+                <span> </span>
+            </Divider>
+
+            <Button
+                className='buttonSearch'
+                variant="contained"
+                size="large"
+                startIcon={<SearchIcon style={{marginLeft: '1rem'}}/>}
+                onClick={validate}
+                disabled={disabledButton}
+            >
+            </Button>
 
             <Grid
                 container
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
+                style={{marginTop: "2rem"}}
             >
-                <Divider align="center">
-                    <span className="p-tag">Número de cuenta</span>
-                </Divider>
-                <TextField
-                    id="outlined-basic"
-                    label=""
-                    variant="outlined"
-                    size="small"
-                    value={inputValue}
-                    onChange={handleChange}
-                    inputProps={{maxLength: 10}}
-                    disabled={disabledTextF}
-                />
-                <Divider align="center">
-                    <span> </span>
-                </Divider>
-
-                <Button
-                    className='buttonSearch'
-                    variant="contained"
-                    color="info"
-                    size="large"
-                    startIcon={<SearchIcon style={{marginLeft: '1rem'}}/>}
-                    onClick={validate}
-                    disabled={disabledButton}
-                >
-                </Button>
-
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{marginTop: "2rem"}}
-                >
-                    {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
-                </Grid>
+                {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
             </Grid>
-        </Grid>);
+        </Grid>
+    </Grid>);
 }
