@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import {DataGrid} from '@mui/x-data-grid';
 import {randomStatusOptions, randomPrice} from '@mui/x-data-grid-generator';
@@ -88,7 +88,7 @@ const columns = [
 ];
 
 
-const rows = [
+/*const rows = [
     {
         id: 1,
         tipoTransaccion: 'Transferencia',
@@ -152,9 +152,18 @@ const rows = [
         fechaTransaccion: "2022-12-12",
         fechaRegistro: "2023-12-12"
     },
-];
+];*/
 
-export default function TransactionsGrid() {
+export default function TransactionsGrid(data) {
+    const transactions = [data.data]
+    const rows = transactions.map((transaction) => ({
+        id: transaction.account_transaction_id,
+        tipoTransaccion: transaction.transaction_type,
+        monto: transaction.amount,
+        fechaTransaccion: transaction.value_date,
+        fechaRegistro: transaction.creation_date
+    }));
+
     return (
         <Box sx={{height: 400, width: '100%'}}>
             <StyledDataGrid

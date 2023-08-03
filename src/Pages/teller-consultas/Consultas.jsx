@@ -9,6 +9,7 @@ import {createAPIEndpoint, ENDPOINTS} from "../../api";
 import Typography from "@mui/material/Typography";
 import AccountCard from "./components/AccountCard";
 import TransactionsGrid from "./components/TransactionsGrid";
+import axios from "axios";
 
 export const Consultas = () => {
     const [value, setValue] = useState("");
@@ -17,7 +18,8 @@ export const Consultas = () => {
 
     function handleSearch(e) {
         e.preventDefault();
-        getInfo(value);
+        /*getInfo(value);*/
+        getAccountTRX();
     }
 
 
@@ -33,6 +35,17 @@ export const Consultas = () => {
                 setResult([])
                 setError(err.code)
             });
+    }
+
+    const getAccountTRX = (value) => {
+        axios.get('https://my.api.mockaroo.com/account-trx.json', {params: {key: 'ccb12090'}})
+            .then((response) => {
+                setResult(response.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
     }
 
     useEffect(() => {
@@ -92,7 +105,7 @@ export const Consultas = () => {
                                     Últimos Movimientos
                                 </Typography>
 
-                                <TransactionsGrid/>
+                                <TransactionsGrid data={result}/>
                             </Grid>
                         </>
                     )}

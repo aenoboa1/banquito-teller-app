@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ButtonBase, styled} from "@mui/material";
+import {ButtonBase, ImageList, ImageListItem, styled} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -81,31 +81,30 @@ const ImageMarked = styled('span')(({theme}) => ({
 export default function ContainedButtons() {
     return (
         <Container>
-            <Box sx={{display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%'}}>
-                {images.map((image) => (<ImageButton
-                    focusRipple
-                    key={image.title}
-                    style={{
-                        width: image.width,
-                    }}
-                    href={image.title}
-                >
-                    <ImageSrc style={{backgroundImage: `url(${image.url})`}}/>
-                    <ImageBackdrop className="MuiImageBackdrop-root"/>
-                    <Image>
-                        <Typography
-                            component="span"
-                            variant="subtitle1"
-                            color="inherit"
-                            sx={{
-                                position: 'relative', p: 4, pt: 2, pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                            }}
-                        >
-                            {image.title}
-                            <ImageMarked className="MuiImageMarked-root"/>
-                        </Typography>
-                    </Image>
-                </ImageButton>))}
+            <Box sx={{display: 'grid', gap: 1, gridTemplateColumns: 'repeat(2, 1fr)'}}>
+                {images.map((image) => (
+                    <ImageButton
+                        focusRipple
+                        key={image.title}
+                        href={image.title}
+                    >
+                        <ImageSrc style={{backgroundImage: `url(${image.url})`}}/>
+                        <ImageBackdrop className="MuiImageBackdrop-root"/>
+                        <Image>
+                            <Typography
+                                component="span"
+                                variant="subtitle1"
+                                color="inherit"
+                                sx={{
+                                    position: 'relative', p: 4, pt: 2, pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                                }}
+                            >
+                                {image.title}
+                                <ImageMarked className="MuiImageMarked-root"/>
+                            </Typography>
+                        </Image>
+                    </ImageButton>
+                ))}
             </Box>
         </Container>
     );
