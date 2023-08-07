@@ -55,13 +55,12 @@ export const TellerRetiros = () => {
             direction="row"
             justifyContent="center"
             alignItems="center"
+
         >
-            <Divider align="center">
-                <span className="p-tag">Número de cuenta</span>
-            </Divider>
+
             <TextField
                 id="outlined-basic"
-                label=""
+                label="Cuenta"
                 variant="outlined"
                 size="small"
                 value={inputValue}
@@ -69,14 +68,11 @@ export const TellerRetiros = () => {
                 inputProps={{maxLength: 10}}
                 disabled={disabledTextF}
             />
-            <Divider align="center">
-                <span> </span>
-            </Divider>
 
             <Button
                 className='buttonSearch'
                 variant="contained"
-                size="large"
+                size="medium"
                 startIcon={<SearchIcon style={{marginLeft: '1rem'}}/>}
                 onClick={validate}
                 disabled={disabledButton}

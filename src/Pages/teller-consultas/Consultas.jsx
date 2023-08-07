@@ -15,15 +15,20 @@ export const Consultas = () => {
     const [value, setValue] = useState("");
     const [Error, setError] = useState("");
     const [result, setResult] = useState([]);
+    const [searchAccount, setSearchAccount] = useState([]);
+
+    useEffect(() => {
+
+    }, []);
 
     function handleSearch(e) {
         e.preventDefault();
         /*getInfo(value);*/
-        getAccountTRX();
+        getAccountInfo(value)
     }
 
 
-    function getInfo(value) {
+    /*function getInfo(value) {
         createAPIEndpoint(ENDPOINTS.accounts)
             .fetchById(value,
                 {},
@@ -35,22 +40,24 @@ export const Consultas = () => {
                 setResult([])
                 setError(err.code)
             });
-    }
+    }*/
 
-    const getAccountTRX = (value) => {
-        axios.get('https://my.api.mockaroo.com/account-trx.json', {params: {key: 'ccb12090'}})
-            .then((response) => {
-                setResult(response.data)
+    const getAccountInfo = (value) => {
+        axios.get('https://my.api.mockaroo.com/account_response.json', {params: {key: 'ccb12090'}})
+            .then(async (response) => {
+                if (response.data.NAME === value) {
+                    setSearchAccount(response.data)
+                    setResult(response.data.transactions)
+                }else{
+                    setError(response.statusText)
+                }
             })
             .catch((err) => {
                 console.log(err)
             })
-
     }
 
-    useEffect(() => {
 
-    }, []);
 
 
     return (
@@ -84,7 +91,7 @@ export const Consultas = () => {
                     // conditional rendering
                     result.length === 0 ? (
                         <>
-                            {Error === "ERR_BAD_RESPONSE" ? (
+                            {Error ? (
                                 <>
                                     <Grid item xs={6}>
                                         No se encontro ninguna cuenta con ese número
@@ -98,7 +105,7 @@ export const Consultas = () => {
                     ) : (
                         <>
                             <Grid item xs={6}>
-                                <AccountCard data={result}/>
+                                <AccountCard data={searchAccount}/>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography>

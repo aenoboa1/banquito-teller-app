@@ -23,7 +23,7 @@ export default function AccountCard({data}) {
                         <Grid item xs={9}>
                             <Typography sx={{fontSize: 16}} gutterBottom>
                                 <Box sx={{textAlign: 'left', m: 1}}>
-                                    {data.firstName} {data.lastName}
+                                    {data.ACCOUNT_HOLDER_FIRSTNAME} {data.ACCOUNT_HOLDER_LASTNAME}
                                 </Box>
                             </Typography>
                         </Grid>
@@ -34,14 +34,14 @@ export default function AccountCard({data}) {
                     <Grid container spacing={1} columns={16}>
                         <Grid item xs={4}>
                             <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom>
-                                <Box sx={{textAlign: 'left', m: 1}}>Tipo de Cuenta:</Box>
+                                <Box sx={{textAlign: 'left', m: 1}}>Cuenta:</Box>
                             </Typography>
 
                         </Grid>
                         <Grid item xs={4}>
                             <Typography sx={{fontSize: 16}} gutterBottom>
                                 <Box sx={{textAlign: 'left', m: 1}}>
-                                    {data.accountTransactions}
+                                    {data.trx}
                                 </Box>
                             </Typography>
 
@@ -54,14 +54,14 @@ export default function AccountCard({data}) {
                     <Grid container spacing={1} columns={16}>
                         <Grid item xs={12}>
                             <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom variant="button">
-                                <Box sx={{textAlign: 'left', m: 1}}>{data.accountType}</Box>
+                                <Box sx={{textAlign: 'left', m: 1}}>{data.PRODUCT_ACCOUNT}</Box>
                             </Typography>
 
                         </Grid>
                         <Grid item xs={4}>
                             <Typography sx={{fontSize: 16}} gutterBottom>
                                 <Box sx={{textAlign: 'right', m: 1}}>
-                                    {data.code}
+                                    {data.NAME}
                                 </Box>
                             </Typography>
                         </Grid>
@@ -79,7 +79,7 @@ export default function AccountCard({data}) {
                             <Grid item xs={9}>
                                 <Typography sx={{fontSize: 16}} gutterBottom>
                                     <Box sx={{textAlign: 'right', m: 1}}>
-                                        {data.totalBalance}
+                                        ${data.AVAILABLE_BALANCE}
                                     </Box>
                                 </Typography>
                             </Grid>

@@ -60,8 +60,14 @@ const StyledDataGrid = styled(DataGrid)(({theme}) => ({
 const columns = [
     {field: 'id', headerName: 'ID', width: 90},
     {
+        field: 'reference',
+        headerName: 'Concepto',
+        width: 200,
+        editable: true,
+    },
+    {
         field: 'tipoTransaccion',
-        headerName: 'Tipo de Transacción',
+        headerName: 'Tipo',
         width: 200,
         editable: true,
     },
@@ -84,7 +90,7 @@ const columns = [
         headerName: 'Fecha de Registro',
         width: 150,
         editable: true,
-    },
+    }
 ];
 
 
@@ -158,6 +164,7 @@ export default function TransactionsGrid(data) {
     const transactions = [data.data]
     const rows = transactions.map((transaction) => ({
         id: transaction.account_transaction_id,
+        reference: transaction.reference,
         tipoTransaccion: transaction.transaction_type,
         monto: transaction.amount,
         fechaTransaccion: transaction.value_date,
@@ -175,6 +182,11 @@ export default function TransactionsGrid(data) {
                             pageSize: 5,
                         },
                     },
+                    columns:{
+                        columnVisibilityModel: {
+                            id: false,
+                        }
+                    }
                 }}
                 pageSizeOptions={[5]}
                 disableRowSelectionOnClick
