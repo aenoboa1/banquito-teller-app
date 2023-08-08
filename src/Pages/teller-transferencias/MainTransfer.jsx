@@ -1,11 +1,12 @@
 import './css/style.css';
-import {Button, Divider, Grid, TextField, Typography} from '@mui/material';
+import {Button, Divider, TextField} from '@mui/material';
 import React, {useState} from 'react'
 
 import SearchIcon from '@mui/icons-material/Search';
 import {AccountCard} from './components/AccountCard';
 import {getAccountByNumber} from './Tranferencias';
 import {NotFound} from "./components/NotFound";
+import Grid from '@mui/material/Grid';
 
 
 export const MainTransfer = () => {
@@ -46,39 +47,32 @@ export const MainTransfer = () => {
     return (
         <Grid
             container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
+            spacing={2}
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                borderRadius: 1,
+                width: 1
+            }}
         >
 
-            <Grid
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-            >
-                <Divider align="center">
-                    <span className="p-tag">N° de cuenta</span>
-                </Divider>
+            <Grid item>
                 <TextField
                     id="outlined-basic"
-                    label=""
+                    label="Cuenta"
                     variant="outlined"
                     size="small"
                     value={inputValue}
                     onChange={handleChange}
                     inputProps={{maxLength: 10}}
                     disabled={disabledTextF}
-
                 />
-                <Divider align="center">
-                    <span> </span>
-                </Divider>
-
+            </Grid>
+            <Grid item>
                 <Button
                     className='buttonSearch'
                     variant="contained"
-                    size="large"
+                    size="medium"
                     startIcon={
                         <SearchIcon style={{marginLeft: '1rem'}}/>
                     }
@@ -86,16 +80,16 @@ export const MainTransfer = () => {
                     disabled={disabledButton}
                 >
                 </Button>
-
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    style={{marginTop: "2rem"}}
-                >
-                    {show ? <AccountCard account={account}/> : showNot ? <NotFound/> : null}
-                </Grid>
+            </Grid>
+            <Divider></Divider>
+            <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                style={{marginTop: "2rem"}}
+            >
+                {show ? <AccountCard account={account}/> : showNot ? <NotFound/> : null}
             </Grid>
         </Grid>
     );

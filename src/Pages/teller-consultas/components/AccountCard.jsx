@@ -54,7 +54,9 @@ export default function AccountCard({data}) {
                     <Grid container spacing={1} columns={16}>
                         <Grid item xs={12}>
                             <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom variant="button">
-                                <Box sx={{textAlign: 'left', m: 1}}>{data.PRODUCT_ACCOUNT}</Box>
+                                <Box sx={{textAlign: 'left', m: 1}}>{
+                                    data.PRODUCT_ACCOUNT === 'AHO' ? 'Ahorro' : 'Corriente'
+                                }</Box>
                             </Typography>
 
                         </Grid>
