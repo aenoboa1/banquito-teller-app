@@ -21,12 +21,12 @@ export const AccountCard = ({account}) => {
                 <Grid container spacing={2}>
                     <Grid item xs={8}>
                         <Typography sx={{mb: 1.5, lineHeight: '250%'}} color="text.secondary">
-                            Propietario: {account.propietario}
+                            Propietario: {account.ACCOUNT_HOLDER_FIRSTNAME} {account.ACCOUNT_HOLDER_LASTNAME}
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
                         <Typography sx={{mb: 1.5, lineHeight: '250%'}} color="text.secondary">
-                            Saldo Disponible: {account.saldoDisponible}
+                            Saldo Disponible: ${account.AVAILABLE_BALANCE}
                         </Typography>
                     </Grid>
                 </Grid>

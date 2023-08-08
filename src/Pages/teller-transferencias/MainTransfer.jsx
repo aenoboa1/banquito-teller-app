@@ -18,14 +18,14 @@ export const MainTransfer = () => {
     const [showNot, setShowNot] = useState(false);
     const [disabledButton, setDisabledButton] = useState(false);
     const [disabledTextF, setDisabledTextF] = useState(false);
-    const [value, setValue] = useState("");
     const [Error, setError] = useState("");
     const [result, setResult] = useState([]);
     const [searchAccount, setSearchAccount] = useState([]);
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
-        getAccountInfo(value);
+        e.preventDefault()
+        getAccountInfo(inputValue);
     };
 
     const getAccountInfo = (value) => {
@@ -33,15 +33,22 @@ export const MainTransfer = () => {
             .then(async (response) => {
                 if (response.data.NAME === value) {
                     setSearchAccount(response.data)
-                    setResult(response.data.transactions)
+                    setShowNot(false);
+                    setShow(true);
+                    setDisabledButton(true);
+                    setDisabledTextF(true);
+                    console.log(response.data)
                 }else{
+                    setShowNot(true);
                     setError(response.statusText)
                 }
             })
             .catch((err) => {
+
                 console.log(err)
             })
     }
+
 
     const validate = () => {
 
@@ -97,7 +104,7 @@ export const MainTransfer = () => {
                     startIcon={
                         <SearchIcon style={{marginLeft: '1rem'}}/>
                     }
-                    onClick={validate}
+                    onClick={handleChange}
                     disabled={disabledButton}
                 >
                 </Button>
@@ -110,7 +117,7 @@ export const MainTransfer = () => {
                 alignItems="center"
                 style={{marginTop: "2rem"}}
             >
-                {show ? <AccountCard account={account}/> : showNot ? <NotFound/> : null}
+                {show ? <AccountCard account={searchAccount}/> : showNot ? <NotFound/> : null}
             </Grid>
         </Grid>
     );
