@@ -7,6 +7,7 @@ import {AccountCard} from './components/AccountCard';
 import {getAccountByNumber} from './Tranferencias';
 import {NotFound} from "./components/NotFound";
 import Grid from '@mui/material/Grid';
+import axios from "axios";
 
 
 export const MainTransfer = () => {
@@ -17,10 +18,30 @@ export const MainTransfer = () => {
     const [showNot, setShowNot] = useState(false);
     const [disabledButton, setDisabledButton] = useState(false);
     const [disabledTextF, setDisabledTextF] = useState(false);
+    const [value, setValue] = useState("");
+    const [Error, setError] = useState("");
+    const [result, setResult] = useState([]);
+    const [searchAccount, setSearchAccount] = useState([]);
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
+        getAccountInfo(value);
     };
+
+    const getAccountInfo = (value) => {
+        axios.get('https://my.api.mockaroo.com/account_response.json', {params: {key: 'ccb12090'}})
+            .then(async (response) => {
+                if (response.data.NAME === value) {
+                    setSearchAccount(response.data)
+                    setResult(response.data.transactions)
+                }else{
+                    setError(response.statusText)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     const validate = () => {
 
