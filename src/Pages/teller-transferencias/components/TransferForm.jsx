@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, {useState} from 'react';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import './css/index.css';
-import { Button, Divider, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import {Button, Divider, InputLabel, OutlinedInput, TextField} from '@mui/material';
+import {useNavigate} from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 
 export const TransferForm = () => {
     const navigate = useNavigate();
@@ -12,113 +19,89 @@ export const TransferForm = () => {
     };
 
     const handleNavigateToTransfer = () => {
-       
+
         console.log('navigateToTransfer');
         alert('REGRESANDO');
     };
 
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
     return (
-        <>
-            <Formik
-                initialValues={{
-                    cedula: '',
-                    nombre: '',
-                    monto: ''
-                }}
-                validate={(valores) => {
-                    let errores = {};
+        <Formik
+            initialValues={{
+                cuenta: '',
+                nombre: '',
+                monto: ''
+            }}
+            validate={(values) => {
+                let errores = {};
 
-                    // Validacion nombre
-                    if (!valores.nombre) {
-                        errores.nombre = 'Por favor ingresa un nombre'
-                    } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)) {
-                        errores.nombre = 'El nombre solo puede contener letras y espacios'
-                    }
-                }}
-                onSubmit={(valores, { resetForm }) => {
-                    resetForm();
-                    console.log('Formulario enviado');
-                    cambiarFormularioEnviado(true);
-                    setTimeout(() => cambiarFormularioEnviado(false), 5000);
-                }}
-            >
-                {({ errors }) => (
-                    <Form className="formulario">
-                        <div style={{ marginBottom: '10px' }}>
-                            <TextField
-                                id="cedula"
-                                name="cedula"
-                                label="Cuenta del Beneficiario"
-                                size="small"
-                            />
-                            <ErrorMessage name="cedula" component={() => (<div className="error">{errors.nombre}</div>)} />
-                        </div>
+                // Validacion nombre
+                if (!values.nombre) {
+                    errores.nombre = 'Por favor ingresa un nombre'
+                } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.nombre)) {
+                    errores.nombre = 'El nombre solo puede contener letras y espacios'
+                }
+            }}
+            onSubmit={(values, {resetForm}) => {
+                resetForm();
+                console.log('Formulario enviado');
+                cambiarFormularioEnviado(true);
+                setTimeout(() => cambiarFormularioEnviado(false), 5000);
+            }}
+        >
+            {({errors, values, handleChange}) => (
+                <Box>
+                    <Grid>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    Realizar transferencia
+                                </Typography>
+                                <Box>
+                                    <Form sx={{width: '50%'}}>
+                                        <FormControl sx={{p: 1, m: 1, display: 'block'}}>
+                                            <InputLabel htmlFor="cuenta" size="small">Cuenta
+                                                Beneficiario</InputLabel>
+                                            <OutlinedInput fullWidth id="cuenta" name="cuenta"
+                                                           onChange={handleChange} value={values.cuenta}/>
+                                            <ErrorMessage name="cuenta" component={() => (<FormHelperText
+                                                id="component-error-text">{errors.cuenta}</FormHelperText>)}/>
+                                        </FormControl>
+                                        <FormControl sx={{p: 1, m: 1, display: 'block'}}>
+                                            <InputLabel htmlFor="nombre" size="small">Nombre
+                                                Beneficiario</InputLabel>
+                                            <OutlinedInput fullWidth id="nombre" name="nombre"
+                                                           onChange={handleChange} value={values.nombre}/>
+                                            <ErrorMessage name="nombre" component={() => (<FormHelperText
+                                                id="component-error-text">{errors.nombre}</FormHelperText>)}/>
+                                        </FormControl>
+                                        <FormControl sx={{p: 1, m: 1, display: 'block'}}>
+                                            <InputLabel htmlFor="monto" size="small">Monto</InputLabel>
+                                            <OutlinedInput fullWidth id="monto" name="monto" onChange={handleChange}
+                                                           value={values.monto}/>
+                                            <ErrorMessage name="monto" component={() => (<FormHelperText
+                                                id="component-error-text">{errors.monto}</FormHelperText>)}/>
+                                        </FormControl>
+                                        <Box sx={{flexGrow: 1, justifyContent:'center'}}>
+                                            <Grid container spacing={2} columns={16}>
+                                                <Grid item xs={8}>
+                                                    <Button variant="filled" color="secondary"
+                                                            onClick={handleNavigateToTransfer}>Regresar</Button>
+                                                </Grid>
+                                                <Grid item xs={8}>
+                                                    <Button type="submit" variant="contained" color="primary"
+                                                            onClick={handleNavigateToConfirmTransfer}>Transferir</Button>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Form>
+                                </Box>
+                            </CardContent>
 
-                        <div style={{ marginBottom: '10px' }}>
-                            <TextField
-                                id="tipo"
-                                name="tipo"
-                                label="Tipo de Cuenta"
-                                size="small"
-                            />
-                            <ErrorMessage name="tipo" component={() => (<div className="error">{errors.nombre}</div>)} />
-                        </div>
-
-                        <div style={{ marginBottom: '10px' }}>
-
-                            <TextField
-                                id="nombre"
-                                name="nombre"
-                                label="Nombre del Beneficiario"
-                                size="small"
-                                variant='outlined'
-                            />
-                            <ErrorMessage name="nombre" component={() => (<div className="error">{errors.nombre}</div>)} />
-                        </div>
-
-                        <div style={{ marginBottom: '10px' }}>
-                            <TextField
-                                id="monto"
-                                name="monto"
-                                label="Monto a Transferir $"
-                                size="small"
-                            />
-                            <ErrorMessage name="monto" component={() => (<div className="error">{errors.monto}</div>)} />
-                        </div>
-                    </Form>
-                )}
-            </Formik>
-
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
-                <div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        style={{
-                            marginBottom: '10px',
-                            marginRight: '12rem',
-                            backgroundColor: '#00202E'
-                        }}
-                        onClick={handleNavigateToTransfer}
-                    >
-                        REGRESAR
-                    </Button>
-
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        style={{
-                            marginBottom: '10px',
-                            marginLeft: '12rem',
-                            backgroundColor: '#810000'
-                        }}
-                        onClick={handleNavigateToConfirmTransfer}
-                    >
-                        REALIZAR TRANSFERENCIA
-                    </Button>
-                </div>
-            </div>
-        </>
-    );
+                        </Card>
+                    </Grid>
+                </Box>
+            )}
+        </Formik>
+    );
 }
