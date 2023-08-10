@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import './css/index.css';
-import {Button, Divider, InputLabel, OutlinedInput, TextField} from '@mui/material';
+import {Button, Divider, InputLabel, Modal, OutlinedInput, TextField} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
@@ -11,8 +11,64 @@ import Typography from "@mui/material/Typography";
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    borderRadius: '16px',
+    borderColor: 'secondary.main',
+    boxShadow: 24,
+    pt: 4,
+    px: 6,
+    pb: 5,
+};
+function ChildModal() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <React.Fragment>
+            <Button onClick={handleOpen}>CONFIRMAR</Button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="child-modal-title"
+                aria-describedby="child-modal-description"
+            >
+                <Box sx={{...style, width: 200 }}>
+                    <h2 id="child-modal-title">Text in a child modal</h2>
+                    <p id="child-modal-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <Button onClick={handleClose}>Close Child Modal</Button>
+                </Box>
+            </Modal>
+        </React.Fragment>
+    );
+}
+
 export const TransferForm = () => {
+
     const navigate = useNavigate();
+    const [valueTrx, setValueTrx] = useState(0);
+    const [accountTrx, setAccountTrx] = useState();
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleNavigateToConfirmTransfer = () => {
         navigate('/transferenciasConfirm');
@@ -44,7 +100,9 @@ export const TransferForm = () => {
             }}
             onSubmit={(values, {resetForm}) => {
                 resetForm();
-                console.log('Formulario enviado');
+                console.log(values);
+                setValueTrx(values.monto);
+                setAccountTrx(values.cuenta);
                 cambiarFormularioEnviado(true);
                 setTimeout(() => cambiarFormularioEnviado(false), 5000);
             }}
@@ -89,15 +147,31 @@ export const TransferForm = () => {
                                                             onClick={handleNavigateToTransfer}>Regresar</Button>
                                                 </Grid>
                                                 <Grid item xs={8}>
-                                                    <Button type="submit" variant="contained" color="primary"
-                                                            onClick={handleNavigateToConfirmTransfer}>Transferir</Button>
+                                                    <Button type="submit" variant="contained" color="primary"  onClick={handleOpen}>Transferir</Button>
+                                                    <Modal
+                                                        open={open}
+                                                        onClose={handleClose}
+                                                        aria-labelledby="parent-modal-title"
+                                                        aria-describedby="parent-modal-description"
+                                                    >
+                                                        <Box sx={{ ...style, width: 400 }}>
+                                                            <h2 id="parent-modal-title">Detalles de trasnferencia</h2>
+                                                            <p id="parent-modal-description">
+                                                                Vas a transferir $ {valueTrx} a la cuenta {accountTrx}.
+                                                                Desea continuar?
+                                                            </p>
+                                                            <Box sx={{justifyContent: 'center', display:'flex'}}>
+                                                                <ChildModal/>
+                                                                <Button variant="filled" color="secondary" onClick={handleClose}>Cerrar</Button>
+                                                            </Box>
+                                                        </Box>
+                                                    </Modal>
                                                 </Grid>
                                             </Grid>
                                         </Box>
                                     </Form>
                                 </Box>
                             </CardContent>
-
                         </Card>
                     </Grid>
                 </Box>
