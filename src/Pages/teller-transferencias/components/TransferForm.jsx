@@ -44,12 +44,9 @@ function ChildModal() {
                 aria-labelledby="child-modal-title"
                 aria-describedby="child-modal-description"
             >
-                <Box sx={{...style, width: 200 }}>
-                    <h2 id="child-modal-title">Text in a child modal</h2>
-                    <p id="child-modal-description">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    </p>
-                    <Button onClick={handleClose}>Close Child Modal</Button>
+                <Box sx={{...style, width: 400, p:2, m:1 }}>
+                    <h3 id="child-modal-title">Transferencia realizada con éxito!</h3>
+                    <Button onClick={handleClose}>Cerrar</Button>
                 </Box>
             </Modal>
         </React.Fragment>
@@ -77,7 +74,6 @@ export const TransferForm = () => {
     const handleNavigateToTransfer = () => {
 
         console.log('navigateToTransfer');
-        alert('REGRESANDO');
     };
 
     const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
@@ -160,7 +156,7 @@ export const TransferForm = () => {
                                                                 Vas a transferir $ {valueTrx} a la cuenta {accountTrx}.
                                                                 Desea continuar?
                                                             </p>
-                                                            <Box sx={{justifyContent: 'center', display:'flex'}}>
+                                                            <Box sx={{justifyContent: 'center', display:'block', p:1, m:1}}>
                                                                 <ChildModal/>
                                                                 <Button variant="filled" color="secondary" onClick={handleClose}>Cerrar</Button>
                                                             </Box>
