@@ -29,9 +29,9 @@ export const MainTransfer = () => {
     };
 
     const getAccountInfo = (value) => {
-        axios.get('https://my.api.mockaroo.com/account_response.json', {params: {key: 'ccb12090'}})
+        axios.get('https://banquito-ws-cuentas-ntsumodxxq-uc.a.run.app/api/v1/account/information/'+value)
             .then(async (response) => {
-                if (response.data.NAME === value) {
+                if (response.data.codeInternalAccount === value) {
                     setSearchAccount(response.data)
                     setShowNot(false);
                     setShow(true);
@@ -50,27 +50,6 @@ export const MainTransfer = () => {
     }
 
 
-    const validate = () => {
-
-        const accountData = getAccountByNumber(inputValue);
-        if (accountData === undefined || accountData === null) {
-            const newAccount = {
-                numeroCuenta: '0000000000',
-                tipoCuenta: '----------',
-                propietario: 'Sin nombre'
-            };
-            setAccount(newAccount);
-            setShowNot(true);
-        } else {
-            setAccount(accountData);
-            if (inputValue === accountData.numeroCuenta) {
-                setShowNot(false);
-                setShow(true);
-                setDisabledButton(true);
-                setDisabledTextF(true);
-            }
-        }
-    }
 
     return (
         <Grid

@@ -14,12 +14,12 @@ export const AccountCard = ({account}) => {
                 <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
                     <Grid item xs={8}>
                         <Typography sx={{mb: 1.5, lineHeight: '250%'}} color="text.secondary">
-                            Propietario: {account.ACCOUNT_HOLDER_FIRSTNAME} {account.ACCOUNT_HOLDER_LASTNAME}
+                            Propietario: {account.clientAccount.firstName} {account.clientAccount.lastName}
                         </Typography>
                     </Grid>
                     <Grid item xs={8}>
                         <Typography sx={{mb: 1.5, lineHeight: '250%'}} color="text.secondary">
-                            Saldo Disponible: ${account.AVAILABLE_BALANCE}
+                            Saldo Disponible: ${account.availableBalance}
                         </Typography>
                     </Grid>
                 </Grid>

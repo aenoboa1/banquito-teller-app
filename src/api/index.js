@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const BASE_URL = 'https://my.api.mockaroo.com/account-trx.json'; /*'https://64ac56039edb4181202f712a.mockapi.io/';*/
+export const BASE_URL = 'https://banquito-ws-cuentas-ntsumodxxq-uc.a.run.app/api/v1' /*'https://my.api.mockaroo.com/account-trx.json'; *//*'https://64ac56039edb4181202f712a.mockapi.io/';*/
 export const BASE_URL_DEPOSIT = 'https://64b6cddfdf0839c97e1625e9.mockapi.io/deposits/';
 
 export const ENDPOINTS = {
