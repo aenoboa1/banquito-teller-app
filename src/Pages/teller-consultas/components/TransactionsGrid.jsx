@@ -163,12 +163,12 @@ const columns = [
 export default function TransactionsGrid(data) {
     const transactions = [data.data]
     const rows = transactions.map((transaction) => ({
-        id: transaction.account_transaction_id,
+        id: transaction.uniqueKey,
         reference: transaction.reference,
-        tipoTransaccion: transaction.transaction_type,
+        tipoTransaccion: transaction.transactionType,
         monto: transaction.amount,
-        fechaTransaccion: transaction.value_date,
-        fechaRegistro: transaction.creation_date
+        fechaTransaccion: transaction.valueDate,
+        fechaRegistro: transaction.creationDate
     }));
 
     return (

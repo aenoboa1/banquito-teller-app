@@ -22,9 +22,10 @@ export const Consultas = () => {
     }, []);
 
     function handleSearch(e) {
+        setValue(e.target.value)
         e.preventDefault();
-        /*getInfo(value);*/
         getAccountInfo(value)
+        getAccountTransactions(value)
     }
 
 
@@ -43,14 +44,23 @@ export const Consultas = () => {
     }*/
 
     const getAccountInfo = (value) => {
-        axios.get('https://my.api.mockaroo.com/account_response.json', {params: {key: 'ccb12090'}})
+        axios.get('https://banquito-ws-cuentas-ntsumodxxq-uc.a.run.app/api/v1/account/information/'+value)
             .then(async (response) => {
-                if (response.data.NAME === value) {
+                if (response.data.codeInternalAccount === value) {
                     setSearchAccount(response.data)
-                    setResult(response.data.transactions)
                 }else{
                     setError(response.statusText)
                 }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const getAccountTransactions = (value) => {
+        axios.get('https://banquito-ws-cuentas-ntsumodxxq-uc.a.run.app/api/v1/account-transaction/history/'+value)
+            .then(async (response) => {
+                setResult(response.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -111,9 +121,8 @@ export const Consultas = () => {
                                 <Typography>
                                     Últimos Movimientos
                                 </Typography>
-
-                                <TransactionsGrid data={result}/>
                             </Grid>
+                            <TransactionsGrid data={result}/>
                         </>
                     )}
 
