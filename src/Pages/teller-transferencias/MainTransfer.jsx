@@ -86,7 +86,7 @@ export const MainTransfer = () => {
     const submitTransfer = (trx) => {
         const {cuenta, monto, referencia} = trx;
         const debtorAccount = searchAccount.codeInternalAccount;
-        const transactionType = "DEB";
+        const transactionType = "CRED";
         const transaction = {
             creditorAccount: cuenta,
             debtorAccount: debtorAccount,
@@ -107,36 +107,6 @@ export const MainTransfer = () => {
 
         })
     }
-
-    function ChildModal() {
-        const [open, setOpen] = React.useState(false);
-        const handleOpen = () => {
-            setOpen(true);
-            submitTransfer(trx);
-        };
-        const handleClose = () => {
-            setOpen(false);
-            handleCloseModal();
-        };
-
-        return (
-            <React.Fragment>
-                <Button onClick={handleOpen}>CONFIRMAR</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="child-modal-title"
-                    aria-describedby="child-modal-description"
-                >
-                    <Box sx={{...style, width: 400, p: 2, m: 1}}>
-                        <h3 id="child-modal-title">Transferencia realizada con éxito!</h3>
-                        <Button onClick={handleClose}>Cerrar</Button>
-                    </Box>
-                </Modal>
-            </React.Fragment>
-        );
-    }
-
 
     const AccountCard = () => {
         return (<Grid>
@@ -160,6 +130,7 @@ export const MainTransfer = () => {
             <TransferForm/>
         </Grid>);
     }
+
 
     const TransferForm = () => {
         return (
@@ -187,7 +158,7 @@ export const MainTransfer = () => {
                     resetForm();
                     console.log(values);
                     setTrx(values);
-                    setAccountTrx(searchAccount.codeInternalAccount);
+                    setAccountTrx(values.cuenta);
                     setValueTrx(values.monto)
                     handleOpenModal();
                 }}
@@ -260,6 +231,38 @@ export const MainTransfer = () => {
                 )}
             </Formik>
         )
+    }
+
+    function ChildModal() {
+        const [open, setOpen] = React.useState(false);
+        const handleOpen = () => {
+            setOpen(true);
+            submitTransfer(trx);
+        };
+        const handleClose = () => {
+            setOpen(false);
+            handleCloseModal();
+            setShow(false);
+            setDisabledButton(false);
+            setDisabledTextF(false);
+        };
+
+        return (
+            <React.Fragment>
+                <Button onClick={handleOpen}>CONFIRMAR</Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="child-modal-title"
+                    aria-describedby="child-modal-description"
+                >
+                    <Box sx={{...style, width: 400, p: 4, m: 3}}>
+                        <h3 id="child-modal-title">Transferencia realizada con éxito!</h3>
+                        <Button onClick={handleClose}>Cerrar</Button>
+                    </Box>
+                </Modal>
+            </React.Fragment>
+        );
     }
 
 

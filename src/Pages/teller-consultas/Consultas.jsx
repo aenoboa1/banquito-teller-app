@@ -138,7 +138,7 @@ export const Consultas = () => {
         {
             field: 'reference',
             headerName: 'Concepto',
-            width: 200,
+            width: 300,
         },
         {
             field: 'tipoTransaccion',
