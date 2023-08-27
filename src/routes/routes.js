@@ -19,9 +19,6 @@ import TellerConsultas from "../Pages/teller-consultas";
 import TellerDeposit from "../Pages/teller-depositos";
 import TellerRetiro from "../Pages/teller-retiros";
 import TellerTransferencia from "../Pages/teller-transferencias";
-import {ConfirmRetiro} from "../Pages/teller-retiros/components/ConfirmRetiro";
-import {ConfirmTransfer} from "../Pages/teller-transferencias/components/ConfirmTransfer";
-import {ConfirmDeposit} from "../Pages/teller-depositos/components/ConfirmDeposit";
 
 /**
  All of the routes for the Soft UI Dashboard React are added here,
@@ -85,24 +82,6 @@ const routes = [
         noCollapse: true
     },
     {
-        key: "",
-        route: "/retirosConfirm",
-        component: <ConfirmRetiro/>,
-        noCollapse: true,
-    },
-    {
-        key: "",
-        route: "/transferenciasConfirm",
-        component: <ConfirmTransfer/>,
-        noCollapse: true,
-    },
-    {
-        key: "",
-        route: "/depositConfirm",
-        component: <ConfirmDeposit/>,
-        noCollapse: true,
-    },
-    {
         type: "collapse",
         name: "transferencias",
         key: "transferencias",
@@ -111,7 +90,6 @@ const routes = [
         component: <TellerTransferencia/>,
         noCollapse: true
     }
-
 
 ];
 
