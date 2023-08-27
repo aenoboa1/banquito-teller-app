@@ -1,12 +1,12 @@
 import './css/style.css';
-import {Button, Divider, Grid, TextField} from '@mui/material';
+import {Button, Divider, TextField} from '@mui/material';
 import React, {useState} from 'react'
 // import { SearchIcon } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import {getAccountByNumber} from './retiros';
 import {AccountDetails} from "./components/AccountDetails";
 import {NotFound} from "./components/NotFound";
-
+import Grid from '@mui/material/Grid';
 
 export const TellerRetiros = () => {
 
@@ -45,23 +45,19 @@ export const TellerRetiros = () => {
 
     return (<Grid
         container
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
+        spacing={2}
+        sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            borderRadius: 1,
+            width: 1
+        }}
     >
 
-        <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Divider align="center">
-                <span className="p-tag">Número de cuenta</span>
-            </Divider>
+        <Grid item>
             <TextField
                 id="outlined-basic"
-                label=""
+                label="Cuenta"
                 variant="outlined"
                 size="small"
                 value={inputValue}
@@ -69,29 +65,29 @@ export const TellerRetiros = () => {
                 inputProps={{maxLength: 10}}
                 disabled={disabledTextF}
             />
-            <Divider align="center">
-                <span> </span>
-            </Divider>
+        </Grid>
 
+        <Grid item>
             <Button
                 className='buttonSearch'
                 variant="contained"
-                size="large"
+                size="medium"
                 startIcon={<SearchIcon style={{marginLeft: '1rem'}}/>}
                 onClick={validate}
                 disabled={disabledButton}
             >
             </Button>
-
-            <Grid
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                style={{marginTop: "2rem"}}
-            >
-                {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
-            </Grid>
         </Grid>
+        <Divider></Divider>
+        <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            style={{marginTop: "2rem"}}
+        >
+            {show ? <AccountDetails account={account}/> : showNot ? <NotFound/> : null}
+        </Grid>
+
     </Grid>);
 }
